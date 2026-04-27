@@ -1,0 +1,62 @@
+#%RAML 1.0
+title: employee-api
+protocols:
+  - HTTP
+  - HTTPS
+version: v1
+
+securitySchemes:
+  basicAuth:
+    description: This api Supports Basic Authentication
+    type: Basic Authentication
+
+/employee:
+  post:
+    securedBy:
+      - basicAuth
+  
+    body:
+      application/json:
+        example:
+          {
+            "empid": 101,
+            "name": "kiran",
+            "email": "kiran@gmail.com",
+            "phnumber": "1234567890"  
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Employee Created Successfully"
+              }
+      400:
+        body:
+          application/json:
+            example:
+              {
+                "message" : "Bad Request"
+              }
+  get:
+    securedBy:
+      - basicAuth
+    responses:
+      200:
+        body:
+          applicatiopn/json:
+            example:
+              {
+                "empid": 101,
+                "name": "kiran",
+                "email": "kiran@gmail.com",
+                "phnumber": "1234567890"  
+              }
+      400:
+        body:
+          application/json:
+            example:
+              {
+                "message" : "Bad Request"
+              }
